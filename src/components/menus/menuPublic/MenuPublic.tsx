@@ -1,5 +1,6 @@
-import './Menu.css';
+import './MenuPublic.css';
 import { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 interface Produto {
   id: number;
@@ -11,6 +12,9 @@ interface Produto {
 }
 
 function Menu() {
+
+  const navigate = useNavigate();
+
   const [produtos, setProdutos] = useState<Produto[]>([]);
 
   useEffect(() => {
@@ -36,11 +40,18 @@ function Menu() {
   };
 
   return (
-    <>
+     <>
       <nav className="navbar">
         <h1>🛍️ Minha Loja</h1>
+        <div className="navbar-actions">
+          <button className="btn-nav btn-nav-outline" onClick={() => navigate("/")}>
+            Entrar
+          </button>
+          <button className="btn-nav btn-nav-filled" onClick={() => navigate("/register")}>
+            Criar conta
+          </button>
+        </div>
       </nav>
-
       <div className="menu">
         {Object.entries(produtosPorCategoria).map(([categoria, itens]) => (
           <section key={categoria} className="categoria-section">

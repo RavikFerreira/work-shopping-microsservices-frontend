@@ -1,0 +1,88 @@
+.checkout-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.checkout-container h2 {
+  margin-bottom: 1.5rem;
+  font-size: 1.6rem;
+}
+
+.checkout-resumo,
+.checkout-pagamento {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  padding: 1.2rem 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.checkout-resumo h3,
+.checkout-pagamento h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.checkout-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 0.95rem;
+}
+
+.checkout-total {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+  font-size: 1.1rem;
+}
+
+.checkout-pagamento {
+  display: flex;
+  flex-direction: column;
+}
+
+.pagamento-option {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 0;
+  font-size: 0.95rem;
+  cursor: pointer;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.pagamento-option:last-child {
+  border-bottom: none;
+}
+
+.pagamento-option input[type="radio"] {
+  accent-color: #1a1a1a;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.btn-confirmar {
+  width: 100%;
+  background-color: #1a1a1a;
+  color: #fff;
+  border: none;
+  padding: 0.9rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-confirmar:hover:not(:disabled) {
+  background-color: #333;
+}
+
+.btn-confirmar:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}

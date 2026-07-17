@@ -22,11 +22,26 @@ function Login() {
     });
   };
   const navigate = useNavigate();
+
+  function getRoleFromToken(token: string): string | null {
+  try {
+    const payload = JSON.parse(atob(token.split(".")[1]));
+    console.log("PAYLOAD COMPLETO DO TOKEN:", payload); 
+    return payload.roles?.[0] ?? null;
+  } catch {
+    return null;
+  }
+}
+function getPayloadFromToken(token: string): any {
+  try {
+    return JSON.parse(atob(token.split(".")[1]));
+  } catch {
+    return null;
+  }
+}
   
   const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
-
-  console.log("Enviando login:", login);
 
     try{
         const response = await fetch("http://localhost:8087/api/v1/auth/authenticate", {
@@ -42,18 +57,26 @@ function Login() {
     throw new Error("Email ou senha inválidos");
     }
     const data = await response.json();
-    localStorage.setItem("token", data.token);
-    console.log(data);
+    localStorage.setItem("token", data.accessToken);
 
-    alert("Login realizado com sucesso!");
-    navigate("/inicio")
-    
+    const payload = getPayloadFromToken(data.accessToken);
+    const idShopping = String(payload?.id ?? "");
+
+    localStorage.setItem("idShopping", idShopping);
+
+    const roleName = getRoleFromToken(data.accessToken);
+    localStorage.setItem("role", roleName ?? "");
+
+    if (roleName === "ADMIN") {
+      navigate("/menuAdm");
+    } else {
+      navigate("/inicio");
+    }
     } catch (error) {
-    console.error(error);
-    alert("Erro ao realizar login.");
+    ;
+    alert(console.error(error));
   }
 };
-
 
   return (
     <div className="login-container">
